@@ -1,4 +1,5 @@
-#!/bin/sh -eux
+#!/bin/bash 
+set -eux
 
 git clone https://src.fedoraproject.org/rpms/kernel.git
 cd kernel
