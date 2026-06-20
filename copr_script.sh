@@ -41,5 +41,5 @@ for config_to_disable in "${configs_to_disable[@]}"; do
   done
 done
 
-mv * ..
-cd ..
+mv * ../..
+cd ../..
