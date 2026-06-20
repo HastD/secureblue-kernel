@@ -29,20 +29,13 @@ configs_to_disable=(
   CONFIG_L2TP
   CONFIG_HID_PXRC
   CONFIG_USB_TRANCEVIBRATOR
-  CONFIG_MCTP
+  CONFIG_MCTP  
+  CONFIG_VIDEO_CS3308
+  CONFIG_VIDEO_SAA6752HS
 )
 
-shopt -s nullglob
-config_files=(*.config)
-if (( ${#config_files[@]} == 0 )); then
-  echo "No config files found!"
-  exit 1
-fi
-
 for config_to_disable in "${configs_to_disable[@]}"; do
-  for config_file in "${config_files[@]}"; do
-    sed -i "s/^${config_to_disable}=.*/# ${config_to_disable} is not set/" "$config_file"
-  done
+  echo "# ${config_to_disable} is not set" >> kernel-local
 done
 
 mv * ../..
