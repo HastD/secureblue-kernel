@@ -38,5 +38,7 @@ for config_to_disable in "${configs_to_disable[@]}"; do
   echo "# ${config_to_disable} is not set" >> kernel-local
 done
 
+sed -i 's/^# define buildid .*$/%define buildid .secureblue/' kernel.spec
+
 mv * ../..
 cd ../..
