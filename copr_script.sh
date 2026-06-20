@@ -3,6 +3,9 @@
 git clone https://src.fedoraproject.org/rpms/kernel.git
 cd kernel
 git checkout f44
+
+fedpkg sources
+
 configs_to_disable=(
   CONFIG_RC_DEVICES
   CONFIG_INPUT_JOYDEV
