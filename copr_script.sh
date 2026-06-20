@@ -41,7 +41,7 @@ fi
 
 for config_to_disable in "${configs_to_disable[@]}"; do
   for config_file in "${config_files[@]}"; do
-    sed -i "s/^${config_to_disable}=.*/${config_to_disable}=n/" "$config_file"
+    sed -i "s/^${config_to_disable}=.*/# ${config_to_disable} is not set/" "$config_file"
   done
 done
 
