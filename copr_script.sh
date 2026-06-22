@@ -330,7 +330,7 @@ for config_to_disable in "${configs_to_disable[@]}"; do
 done
 
 SECUREBLUE_BUILDID_VERSION=2
-sed -i 's/^# define buildid .*$/%define buildid .secureblue.${SECUREBLUE_BUILDID_VERSION}/' kernel.spec
+sed -i "s/^# define buildid .*\$/%define buildid .secureblue.${SECUREBLUE_BUILDID_VERSION}/" kernel.spec
 
 mv * ../..
 cd ../..
