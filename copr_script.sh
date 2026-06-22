@@ -8,6 +8,136 @@ git checkout f44
 fedpkg sources
 
 configs_to_disable=(
+  # https://www.kernelconfig.io/CONFIG_INFINIBAND
+  # https://en.wikipedia.org/wiki/InfiniBand
+  # InfiniBand support
+  CONFIG_INFINIBAND
+
+  # https://www.kernelconfig.io/CONFIG_NETCONSOLE
+  # Network console logging support
+  CONFIG_NETCONSOLE
+
+  # https://www.kernelconfig.io/CONFIG_6LOWPAN
+  # https://en.wikipedia.org/wiki/6LoWPAN
+  # IPv6 over Low-Power Wireless Personal Area Networks
+  # It was created with the intention of applying the Internet Protocol (IP) even to the smallest devices,
+  # [3] enabling low-power devices with limited processing capabilities to participate in the Internet of Things.[1]
+  CONFIG_6LOWPAN
+
+  # https://www.kernelconfig.io/CONFIG_IEEE802154
+  # IEEE Std 802.15.4 Low-Rate Wireless Personal Area Networks support
+  # IEEE Std 802.15.4 defines a low data rate, low power and low
+  # complexity short range wireless personal area networks. It was
+  # designed to organise networks of sensors, switches, etc automation
+  # devices. Maximum allowed data rate is 250 kb/s and typical personal
+  # operating space around 10m.
+  CONFIG_IEEE802154
+
+  # https://www.kernelconfig.io/CONFIG_AF_RXRPC
+  # RxRPC session sockets
+  CONFIG_AF_RXRPC
+
+  # https://www.kernelconfig.io/CONFIG_XDP_SOCKETS_DIAG
+  # XDP sockets: monitoring interface
+  CONFIG_XDP_SOCKETS_DIAG
+
+  # https://www.kernelconfig.io/CONFIG_VSOCKETS_DIAG
+  # Virtual Sockets monitoring interface
+  CONFIG_VSOCKETS_DIAG
+
+  # https://www.kernelconfig.io/CONFIG_HSR
+  # High-availability Seamless Redundancy (HSR & PRP)
+  # https://en.wikipedia.org/wiki/High-availability_Seamless_Redundancy
+  # HSR nodes have two ports and act as a bridge, which allows arranging
+  # them into a ring or meshed structure without dedicated switches. This
+  # is in contrast to the companion standard Parallel Redundancy Protocol (PRP),[1]
+  # with which HSR shares the operating principle. 
+  CONFIG_HSR
+
+  # https://www.kernelconfig.io/CONFIG_NET_DSA
+  # Distributed Switch Architecture
+  # https://docs.kernel.org/networking/dsa/dsa.html
+  CONFIG_NET_DSA
+
+
+  
+  ############################################################
+  ################# Kernel testing features ##################
+  ############################################################
+  # https://www.kernelconfig.io/CONFIG_X86_MCE_INJECT
+  # Machine check injector support
+  CONFIG_X86_MCE_INJECT
+  
+  # https://www.kernelconfig.io/CONFIG_HWPOISON_INJECT
+  # HWPoison pages injector
+  CONFIG_HWPOISON_INJECT
+
+  # https://www.kernelconfig.io/CONFIG_PCIEAER_INJECT
+  # This enables PCI Express Root Port Advanced Error Reporting
+  # (AER) software error injector.
+  CONFIG_PCIEAER_INJECT
+
+  # https://www.kernelconfig.io/CONFIG_SCSI_DEBUG
+  # SCSI debugging host and device simulator
+  CONFIG_SCSI_DEBUG
+
+  # https://www.kernelconfig.io/CONFIG_USB_SERIAL_DEBUG
+  # USB Debugging Device
+  CONFIG_USB_SERIAL_DEBUG
+
+  # https://www.kernelconfig.io/CONFIG_RING_BUFFER_BENCHMARK
+  # Ring buffer benchmark stress tester
+  CONFIG_RING_BUFFER_BENCHMARK
+
+  # https://www.kernelconfig.io/CONFIG_DRM_VKMS
+  # Virtual KMS (EXPERIMENTAL)
+  CONFIG_DRM_VKMS
+
+  # https://www.kernelconfig.io/CONFIG_USB_DUMMY_HCD
+  # Dummy HCD (DEVELOPMENT)
+  CONFIG_USB_DUMMY_HCD
+
+  # https://www.kernelconfig.io/CONFIG_MTD_NAND_NANDSIM
+  # Support for NAND Flash Simulator
+  CONFIG_MTD_NAND_NANDSIM
+
+  # https://www.kernelconfig.io/CONFIG_MTD_MTDRAM
+  # Test driver using RAM
+  CONFIG_MTD_MTDRAM
+
+  # https://www.kernelconfig.io/CONFIG_MEDIA_TEST_SUPPORT
+  # Test drivers
+  # "These drivers should not be used on production kernels"
+  CONFIG_MEDIA_TEST_SUPPORT
+
+
+
+  ############################################################
+  ################# Unused ports and devices #################
+  ############################################################
+  # https://www.kernelconfig.io/CONFIG_GAMEPORT
+  # Gameport support is for the standard 15-pin PC gameport.
+  CONFIG_GAMEPORT
+
+  # https://www.kernelconfig.io/CONFIG_SERIAL_NONSTANDARD
+  # Non-standard serial port support
+  # Say Y here if you have any non-standard serial boards -- boards
+  # which aren't supported using the standard "dumb" serial driver.
+  # This includes intelligent serial boards such as
+  # Digiboards, etc. These are usually used for systems that need many
+  # serial ports because they serve many terminals or dial-in
+  # connections.
+  CONFIG_SERIAL_NONSTANDARD
+
+  # https://www.kernelconfig.io/CONFIG_PARPORT
+  # Parallel port support
+  CONFIG_PARPORT
+
+  # https://www.kernelconfig.io/CONFIG_NOZOMI
+  # HSDPA Broadband Wireless Data Card - Globe Trotter
+  # Archaic wireless broadband card
+  CONFIG_NOZOMI
+  
   # https://www.kernelconfig.io/CONFIG_RC_CORE
   # Remote Controller support
   CONFIG_RC_CORE
@@ -55,81 +185,9 @@ configs_to_disable=(
   # hybrid analog/digital TV chipset.
   CONFIG_MEDIA_ANALOG_TV_SUPPORT
 
-  # https://www.kernelconfig.io/CONFIG_MEDIA_TEST_SUPPORT
-  # Test drivers
-  # "These drivers should not be used on production kernels"
-  CONFIG_MEDIA_TEST_SUPPORT
-
-  # https://www.kernelconfig.io/CONFIG_INFINIBAND
-  # https://en.wikipedia.org/wiki/InfiniBand
-  # InfiniBand support
-  CONFIG_INFINIBAND
-
-  # https://www.kernelconfig.io/CONFIG_NETCONSOLE
-  # Network console logging support
-  CONFIG_NETCONSOLE
-
-  # https://www.kernelconfig.io/CONFIG_PARPORT
-  # Parallel port support
-  CONFIG_PARPORT
-
-  # https://www.kernelconfig.io/CONFIG_ATM
-  # Asynchronous Transfer Mode (ATM)
-  # https://en.wikipedia.org/wiki/Asynchronous_Transfer_Mode
-  # In order to participate in an ATM network, your Linux box needs an
-  # ATM networking card.
-  # ATM became popular with telephone companies and many computer makers in the 1990s. 
-  # However, even by the end of the decade, the better price–performance ratio of Internet Protocol-based
-  # products was competing with ATM technology for integrating real-time and bursty network traffic.
-  CONFIG_ATM
-
-  # https://www.kernelconfig.io/CONFIG_GPIB
-  # https://en.wikipedia.org/wiki/GPIB
-  # Enable support for GPIB cards and dongles. 
-  CONFIG_GPIB
-
-  # https://www.kernelconfig.io/CONFIG_6LOWPAN
-  # https://en.wikipedia.org/wiki/6LoWPAN
-  # IPv6 over Low-Power Wireless Personal Area Networks
-  # It was created with the intention of applying the Internet Protocol (IP) even to the smallest devices,
-  # [3] enabling low-power devices with limited processing capabilities to participate in the Internet of Things.[1]
-  CONFIG_6LOWPAN
-
-  # https://www.kernelconfig.io/CONFIG_IEEE802154
-  # IEEE Std 802.15.4 Low-Rate Wireless Personal Area Networks support
-  # IEEE Std 802.15.4 defines a low data rate, low power and low
-  # complexity short range wireless personal area networks. It was
-  # designed to organise networks of sensors, switches, etc automation
-  # devices. Maximum allowed data rate is 250 kb/s and typical personal
-  # operating space around 10m.
-  CONFIG_IEEE802154
-
-  # https://www.kernelconfig.io/CONFIG_X86_ANDROID_TABLETS
-  # X86 Android tablet support
-  CONFIG_X86_ANDROID_TABLETS
-
-  # https://www.kernelconfig.io/CONFIG_CAN
-  # https://www.kernel.org/doc/Documentation/networking/can.rst
-  # https://en.wikipedia.org/wiki/CAN_bus
-  # Controller Area Network (CAN) is a slow (up to 1Mbit/s) serial
-  # communications protocol. 
-  CONFIG_CAN
-
-  # https://www.kernelconfig.io/CONFIG_GNSS
-  # https://en.wikipedia.org/wiki/Satellite_navigation
-  # https://www.kernel.org/doc/Documentation/devicetree/bindings/gnss/gnss-common.yaml
-  # GNSS receiver support
-  CONFIG_GNSS
-
-  # https://www.kernelconfig.io/CONFIG_SERIAL_NONSTANDARD
-  # Non-standard serial port support
-  # Say Y here if you have any non-standard serial boards -- boards
-  # which aren't supported using the standard "dumb" serial driver.
-  # This includes intelligent serial boards such as
-  # Digiboards, etc. These are usually used for systems that need many
-  # serial ports because they serve many terminals or dial-in
-  # connections.
-  CONFIG_SERIAL_NONSTANDARD
+  # https://www.kernelconfig.io/CONFIG_BLK_DEV_FD
+  # Normal floppy disk support
+  CONFIG_BLK_DEV_FD
   
   # https://www.kernelconfig.io/CONFIG_HID_PXRC
   # Support for PhoenixRC HID Flight Controller, a 8-axis flight controller.
@@ -147,94 +205,50 @@ configs_to_disable=(
   # https://www.kernelconfig.io/CONFIG_VIDEO_SAA6752HS
   CONFIG_VIDEO_SAA6752HS
 
-  # https://www.kernelconfig.io/CONFIG_X86_MCE_INJECT
-  # Machine check injector support
-  CONFIG_X86_MCE_INJECT
+  # https://www.kernelconfig.io/CONFIG_X86_ANDROID_TABLETS
+  # X86 Android tablet support
+  CONFIG_X86_ANDROID_TABLETS
+
+  # https://www.kernelconfig.io/CONFIG_GNSS
+  # https://en.wikipedia.org/wiki/Satellite_navigation
+  # https://www.kernel.org/doc/Documentation/devicetree/bindings/gnss/gnss-common.yaml
+  # GNSS receiver support
+  CONFIG_GNSS
+
+  # https://www.kernelconfig.io/CONFIG_GPIB
+  # https://en.wikipedia.org/wiki/GPIB
+  # Enable support for GPIB cards and dongles. 
+  CONFIG_GPIB
+
+
   
-  # https://www.kernelconfig.io/CONFIG_HWPOISON_INJECT
-  # HWPoison pages injector
-  CONFIG_HWPOISON_INJECT
-
-  # https://www.kernelconfig.io/CONFIG_PCIEAER_INJECT
-  # This enables PCI Express Root Port Advanced Error Reporting
-  # (AER) software error injector.
-  CONFIG_PCIEAER_INJECT
-
-  # https://www.kernelconfig.io/CONFIG_SCSI_DEBUG
-  # SCSI debugging host and device simulator
-  CONFIG_SCSI_DEBUG
-
-  # https://www.kernelconfig.io/CONFIG_USB_SERIAL_DEBUG
-  # USB Debugging Device
-  CONFIG_USB_SERIAL_DEBUG
-
-  # https://www.kernelconfig.io/CONFIG_RING_BUFFER_BENCHMARK
-  # Ring buffer benchmark stress tester
-  CONFIG_RING_BUFFER_BENCHMARK
-
-  # https://www.kernelconfig.io/CONFIG_DRM_VKMS
-  # Virtual KMS (EXPERIMENTAL)
-  CONFIG_DRM_VKMS
-
-  # https://www.kernelconfig.io/CONFIG_USB_DUMMY_HCD
-  # Dummy HCD (DEVELOPMENT)
-  CONFIG_USB_DUMMY_HCD
-
-  # https://www.kernelconfig.io/CONFIG_MTD_NAND_NANDSIM
-  # Support for NAND Flash Simulator
-  CONFIG_MTD_NAND_NANDSIM
-
-  # https://www.kernelconfig.io/CONFIG_MTD_MTDRAM
-  # Test driver using RAM
-  CONFIG_MTD_MTDRAM
-
-  # https://www.kernelconfig.io/CONFIG_GAMEPORT
-  # Gameport support is for the standard 15-pin PC gameport.
-  CONFIG_GAMEPORT
-
-  # https://www.kernelconfig.io/CONFIG_BLK_DEV_FD
-  # Normal floppy disk support
-  CONFIG_BLK_DEV_FD
-
-  # https://www.kernelconfig.io/CONFIG_AF_RXRPC
-  # RxRPC session sockets
-  CONFIG_AF_RXRPC
-
-  # https://www.kernelconfig.io/CONFIG_XDP_SOCKETS_DIAG
-  # XDP sockets: monitoring interface
-  CONFIG_XDP_SOCKETS_DIAG
-
-  # https://www.kernelconfig.io/CONFIG_VSOCKETS_DIAG
-  # Virtual Sockets monitoring interface
-  CONFIG_VSOCKETS_DIAG
-
-  # https://www.kernelconfig.io/CONFIG_HSR
-  # High-availability Seamless Redundancy (HSR & PRP)
-  # https://en.wikipedia.org/wiki/High-availability_Seamless_Redundancy
-  # HSR nodes have two ports and act as a bridge, which allows arranging
-  # them into a ring or meshed structure without dedicated switches. This
-  # is in contrast to the companion standard Parallel Redundancy Protocol (PRP),[1]
-  # with which HSR shares the operating principle. 
-  CONFIG_HSR
-
-  # https://www.kernelconfig.io/CONFIG_NET_DSA
-  # Distributed Switch Architecture
-  # https://docs.kernel.org/networking/dsa/dsa.html
-  CONFIG_NET_DSA
-
-  # https://www.kernelconfig.io/CONFIG_NOZOMI
-  # HSDPA Broadband Wireless Data Card - Globe Trotter
-  # Archaic wireless broadband card
-  CONFIG_NOZOMI
-
-  ## Unused network protocols ##
+  ############################################################
+  ################# Unused network protocols #################
+  ############################################################
   # https://www.kernelconfig.io/CONFIG_ATALK
   # Appletalk protocol support
   CONFIG_ATALK
   
+  # https://www.kernelconfig.io/CONFIG_ATM
+  # Asynchronous Transfer Mode (ATM)
+  # https://en.wikipedia.org/wiki/Asynchronous_Transfer_Mode
+  # In order to participate in an ATM network, your Linux box needs an
+  # ATM networking card.
+  # ATM became popular with telephone companies and many computer makers in the 1990s. 
+  # However, even by the end of the decade, the better price–performance ratio of Internet Protocol-based
+  # products was competing with ATM technology for integrating real-time and bursty network traffic.
+  CONFIG_ATM
+  
   # https://www.kernelconfig.io/CONFIG_BATMAN_ADV
   # B.A.T.M.A.N. Advanced Meshing Protocol
   CONFIG_BATMAN_ADV
+
+  # https://www.kernelconfig.io/CONFIG_CAN
+  # https://www.kernel.org/doc/Documentation/networking/can.rst
+  # https://en.wikipedia.org/wiki/CAN_bus
+  # Controller Area Network (CAN) is a slow (up to 1Mbit/s) serial
+  # communications protocol. 
+  CONFIG_CAN
   
   # https://www.kernelconfig.io/CONFIG_IP_DCCP
   # https://en.wikipedia.org/wiki/Datagram_Congestion_Control_Protocol
@@ -282,8 +296,11 @@ configs_to_disable=(
   # cluster applications for many years.
   CONFIG_TIPC
 
-  
-  ## Unused FSes excluding network FSes and squashfs ##
+
+
+  ###################################################################################
+  ################# Unused FSes excluding network FSes and squashfs #################
+  ###################################################################################
   CONFIG_ADFS_FS
   CONFIG_AFFS_FS
   CONFIG_AFS_FS
@@ -306,7 +323,6 @@ configs_to_disable=(
   CONFIG_UBIFS_FS
   CONFIG_UDF_FS
   CONFIG_ZONEFS_FS
-  
 )
 
 for config_to_disable in "${configs_to_disable[@]}"; do
