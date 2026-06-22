@@ -12,6 +12,10 @@ configs_to_disable=(
   # Remote Controller support
   CONFIG_RC_CORE
 
+  # https://www.kernelconfig.io/CONFIG_NFC
+  # NFC subsystem support
+  CONFIG_NFC
+
   # https://www.kernelconfig.io/CONFIG_INPUT_JOYDEV
   # https://www.kernel.org/doc/Documentation/input/joydev/joystick.rst
   CONFIG_INPUT_JOYDEV
@@ -117,34 +121,6 @@ configs_to_disable=(
   # GNSS receiver support
   CONFIG_GNSS
 
-  # https://www.kernelconfig.io/CONFIG_L2TP
-  # https://en.wikipedia.org/wiki/Layer_2_Tunneling_Protocol
-  # Layer Two Tunneling Protocol (L2TP)
-  CONFIG_L2TP
-
-  # https://www.kernelconfig.io/CONFIG_IP_SCTP
-  # https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol
-  # SCTP is a reliable transport protocol operating on top of a
-  # connectionless packet network such as IP. 
-  CONFIG_IP_SCTP
-  CONFIG_NETFILTER_XT_MATCH_SCTP
-  CONFIG_IP_VS_PROTO_SCTP
-  CONFIG_NF_CT_PROTO_SCTP
-
-  # https://www.kernelconfig.io/CONFIG_RDS
-  # https://en.wikipedia.org/wiki/Reliable_Datagram_Sockets
-  # The RDS (Reliable Datagram Sockets) protocol provides reliable,
-  # sequenced delivery of datagrams over Infiniband or TCP.
-  CONFIG_RDS
-
-  # https://www.kernelconfig.io/CONFIG_TIPC
-  # https://en.wikipedia.org/wiki/Transparent_Inter-process_Communication
-  # The Transparent Inter Process Communication (TIPC) protocol is
-  # specially designed for intra cluster communication. This protocol
-  # originates from Ericsson where it has been used in carrier grade
-  # cluster applications for many years.
-  CONFIG_TIPC
-
   # https://www.kernelconfig.io/CONFIG_SERIAL_NONSTANDARD
   # Non-standard serial port support
   # Say Y here if you have any non-standard serial boards -- boards
@@ -154,10 +130,6 @@ configs_to_disable=(
   # serial ports because they serve many terminals or dial-in
   # connections.
   CONFIG_SERIAL_NONSTANDARD
-
-  # https://www.kernelconfig.io/CONFIG_NET_9P
-  # Plan 9 Resource Sharing Support (9P2000)
-  CONFIG_NET_9P
   
   # https://www.kernelconfig.io/CONFIG_HID_PXRC
   # Support for PhoenixRC HID Flight Controller, a 8-axis flight controller.
@@ -166,18 +138,6 @@ configs_to_disable=(
   # https://www.kernelconfig.io/CONFIG_USB_TRANCEVIBRATOR
   # PlayStation 2 Trance Vibrator driver support
   CONFIG_USB_TRANCEVIBRATOR
-
-  # https://www.kernelconfig.io/CONFIG_MCTP
-  # https://en.wikipedia.org/wiki/Management_Component_Transport_Protocol
-  # MCTP core protocol support
-  CONFIG_MCTP
-
-  # https://www.kernelconfig.io/CONFIG_IP_DCCP
-  # https://en.wikipedia.org/wiki/Datagram_Congestion_Control_Protocol
-  # The DCCP Protocol
-  CONFIG_IP_DCCP
-  CONFIG_NETFILTER_XT_MATCH_DCCP
-  CONFIG_NF_CT_PROTO_DCCP
 
   # ADC with mismatched value that has to be set directly
   # https://www.kernelconfig.io/CONFIG_VIDEO_CS3308
@@ -240,17 +200,113 @@ configs_to_disable=(
   # RxRPC session sockets
   CONFIG_AF_RXRPC
 
-  # https://www.kernelconfig.io/CONFIG_JFFS2_FS
-  # Journalling Flash File System v2 (JFFS2) support
-  CONFIG_JFFS2_FS
+  # https://www.kernelconfig.io/CONFIG_XDP_SOCKETS_DIAG
+  # XDP sockets: monitoring interface
+  CONFIG_XDP_SOCKETS_DIAG
 
-  # https://www.kernelconfig.io/CONFIG_UBIFS_FS
-  # UBIFS file system support
-  CONFIG_UBIFS_FS
+  # https://www.kernelconfig.io/CONFIG_VSOCKETS_DIAG
+  # Virtual Sockets monitoring interface
+  CONFIG_VSOCKETS_DIAG
 
-  # https://www.kernelconfig.io/CONFIG_BEFS_FS
-  # BeOS file system (BeFS) support (read only)
+  # https://www.kernelconfig.io/CONFIG_HSR
+  # High-availability Seamless Redundancy (HSR & PRP)
+  # https://en.wikipedia.org/wiki/High-availability_Seamless_Redundancy
+  # HSR nodes have two ports and act as a bridge, which allows arranging
+  # them into a ring or meshed structure without dedicated switches. This
+  # is in contrast to the companion standard Parallel Redundancy Protocol (PRP),[1]
+  # with which HSR shares the operating principle. 
+  CONFIG_HSR
+
+  # https://www.kernelconfig.io/CONFIG_NET_DSA
+  # Distributed Switch Architecture
+  # https://docs.kernel.org/networking/dsa/dsa.html
+  CONFIG_NET_DSA
+
+  # https://www.kernelconfig.io/CONFIG_NOZOMI
+  # HSDPA Broadband Wireless Data Card - Globe Trotter
+  # Archaic wireless broadband card
+  CONFIG_NOZOMI
+
+  ## Unused network protocols ##
+  # https://www.kernelconfig.io/CONFIG_ATALK
+  # Appletalk protocol support
+  CONFIG_ATALK
+  
+  # https://www.kernelconfig.io/CONFIG_BATMAN_ADV
+  # B.A.T.M.A.N. Advanced Meshing Protocol
+  CONFIG_BATMAN_ADV
+  
+  # https://www.kernelconfig.io/CONFIG_IP_DCCP
+  # https://en.wikipedia.org/wiki/Datagram_Congestion_Control_Protocol
+  # The DCCP Protocol
+  CONFIG_IP_DCCP
+  CONFIG_NETFILTER_XT_MATCH_DCCP
+  CONFIG_NF_CT_PROTO_DCCP
+
+  # https://www.kernelconfig.io/CONFIG_GTP
+  # GPRS Tunneling Protocol datapath (GTP-U)
+  # https://en.wikipedia.org/wiki/GPRS_Tunnelling_Protocol
+  # used for cellulard network infrastructure
+  CONFIG_GTP
+  
+  # https://www.kernelconfig.io/CONFIG_RDS
+  # https://en.wikipedia.org/wiki/Reliable_Datagram_Sockets
+  # The RDS (Reliable Datagram Sockets) protocol provides reliable,
+  # sequenced delivery of datagrams over Infiniband or TCP.
+  CONFIG_RDS
+
+  # https://www.kernelconfig.io/CONFIG_L2TP
+  # https://en.wikipedia.org/wiki/Layer_2_Tunneling_Protocol
+  # Layer Two Tunneling Protocol (L2TP)
+  CONFIG_L2TP
+  
+  # https://www.kernelconfig.io/CONFIG_MCTP
+  # https://en.wikipedia.org/wiki/Management_Component_Transport_Protocol
+  # MCTP core protocol support
+  CONFIG_MCTP
+  
+  # https://www.kernelconfig.io/CONFIG_IP_SCTP
+  # https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol
+  # SCTP is a reliable transport protocol operating on top of a
+  # connectionless packet network such as IP. 
+  CONFIG_IP_SCTP
+  CONFIG_NETFILTER_XT_MATCH_SCTP
+  CONFIG_IP_VS_PROTO_SCTP
+  CONFIG_NF_CT_PROTO_SCTP
+
+  # https://www.kernelconfig.io/CONFIG_TIPC
+  # https://en.wikipedia.org/wiki/Transparent_Inter-process_Communication
+  # The Transparent Inter Process Communication (TIPC) protocol is
+  # specially designed for intra cluster communication. This protocol
+  # originates from Ericsson where it has been used in carrier grade
+  # cluster applications for many years.
+  CONFIG_TIPC
+
+  
+  ## Unused FSes excluding network FSes and squashfs ##
+  CONFIG_ADFS_FS
+  CONFIG_AFFS_FS
+  CONFIG_AFS_FS
   CONFIG_BEFS_FS
+  CONFIG_CEPH_FS
+  # https://documentation.suse.com/sle-ha/12-SP5/html/SLE-HA-all/cha-ha-storage-dlm.html
+  CONFIG_CODA_FS
+  CONFIG_CRAMFS
+  CONFIG_DLM
+  CONFIG_ECRYPT_FS
+  CONFIG_GFS2_FS
+  CONFIG_JFFS2_FS
+  CONFIG_JFS_FS
+  CONFIG_MINIX_FS
+  CONFIG_NET_9P
+  CONFIG_NILFS2_FS
+  CONFIG_OCFS2_FS
+  CONFIG_ORANGEFS_FS
+  CONFIG_ROMFS_FS
+  CONFIG_UBIFS_FS
+  CONFIG_UDF_FS
+  CONFIG_ZONEFS_FS
+  
 )
 
 for config_to_disable in "${configs_to_disable[@]}"; do
