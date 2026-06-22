@@ -86,8 +86,6 @@ configs_to_disable=(
   # It was created with the intention of applying the Internet Protocol (IP) even to the smallest devices,
   # [3] enabling low-power devices with limited processing capabilities to participate in the Internet of Things.[1]
   CONFIG_6LOWPAN
-  # Bluetooth 6LoWPAN support
-  CONFIG_BT_6LOWPAN
 
   # https://www.kernelconfig.io/CONFIG_CAN
   # https://www.kernel.org/doc/Documentation/networking/can.rst
@@ -107,6 +105,40 @@ configs_to_disable=(
   # Layer Two Tunneling Protocol (L2TP)
   CONFIG_L2TP
 
+  # https://www.kernelconfig.io/CONFIG_IP_SCTP
+  # https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol
+  # SCTP is a reliable transport protocol operating on top of a
+  # connectionless packet network such as IP. 
+  CONFIG_IP_SCTP
+
+  # https://www.kernelconfig.io/CONFIG_RDS
+  # https://en.wikipedia.org/wiki/Reliable_Datagram_Sockets
+  # The RDS (Reliable Datagram Sockets) protocol provides reliable,
+  # sequenced delivery of datagrams over Infiniband or TCP.
+  CONFIG_RDS
+
+  # https://www.kernelconfig.io/CONFIG_TIPC
+  # https://en.wikipedia.org/wiki/Transparent_Inter-process_Communication
+  # The Transparent Inter Process Communication (TIPC) protocol is
+  # specially designed for intra cluster communication. This protocol
+  # originates from Ericsson where it has been used in carrier grade
+  # cluster applications for many years.
+  CONFIG_TIPC
+
+  # https://www.kernelconfig.io/CONFIG_SERIAL_NONSTANDARD
+  # Non-standard serial port support
+  # Say Y here if you have any non-standard serial boards -- boards
+  # which aren't supported using the standard "dumb" serial driver.
+  # This includes intelligent serial boards such as
+  # Digiboards, etc. These are usually used for systems that need many
+  # serial ports because they serve many terminals or dial-in
+  # connections.
+  CONFIG_SERIAL_NONSTANDARD
+
+  # https://www.kernelconfig.io/CONFIG_NET_9P
+  # Plan 9 Resource Sharing Support (9P2000)
+  CONFIG_NET_9P
+  
   # https://www.kernelconfig.io/CONFIG_HID_PXRC
   # Support for PhoenixRC HID Flight Controller, a 8-axis flight controller.
   CONFIG_HID_PXRC
