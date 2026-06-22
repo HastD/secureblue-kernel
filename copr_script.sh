@@ -8,9 +8,9 @@ git checkout f44
 fedpkg sources
 
 configs_to_disable=(
-  # https://www.kernelconfig.io/CONFIG_RC_DEVICES
-  # Remote Controller devices
-  CONFIG_RC_DEVICES
+  # https://www.kernelconfig.io/CONFIG_RC_CORE
+  # Remote Controller support
+  CONFIG_RC_CORE
 
   # https://www.kernelconfig.io/CONFIG_INPUT_JOYDEV
   # https://www.kernel.org/doc/Documentation/input/joydev/joystick.rst
