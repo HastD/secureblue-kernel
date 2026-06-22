@@ -122,10 +122,6 @@ configs_to_disable=(
   ############################################################
   ################# Unused ports and devices #################
   ############################################################
-  # https://www.kernelconfig.io/CONFIG_GAMEPORT
-  # Gameport support is for the standard 15-pin PC gameport.
-  CONFIG_GAMEPORT
-
   # https://www.kernelconfig.io/CONFIG_SERIAL_NONSTANDARD
   # Non-standard serial port support
   # Say Y here if you have any non-standard serial boards -- boards
@@ -136,10 +132,6 @@ configs_to_disable=(
   # connections.
   CONFIG_SERIAL_NONSTANDARD
 
-  # https://www.kernelconfig.io/CONFIG_PARPORT
-  # Parallel port support
-  CONFIG_PARPORT
-
   # https://www.kernelconfig.io/CONFIG_NOZOMI
   # HSDPA Broadband Wireless Data Card - Globe Trotter
   # Archaic wireless broadband card
@@ -148,18 +140,6 @@ configs_to_disable=(
   # https://www.kernelconfig.io/CONFIG_RC_CORE
   # Remote Controller support
   CONFIG_RC_CORE
-
-  # https://www.kernelconfig.io/CONFIG_NFC
-  # NFC subsystem support
-  CONFIG_NFC
-
-  # https://www.kernelconfig.io/CONFIG_INPUT_JOYDEV
-  # https://www.kernel.org/doc/Documentation/input/joydev/joystick.rst
-  CONFIG_INPUT_JOYDEV
-
-  # https://www.kernelconfig.io/CONFIG_INPUT_JOYSTICK
-  # https://www.kernel.org/doc/Documentation/input/joydev/joystick.rst
-  CONFIG_INPUT_JOYSTICK
 
   # https://www.kernelconfig.io/CONFIG_IIO
   # The industrial I/O subsystem provides a unified framework for
@@ -200,10 +180,6 @@ configs_to_disable=(
   # Support for PhoenixRC HID Flight Controller, a 8-axis flight controller.
   CONFIG_HID_PXRC
 
-  # https://www.kernelconfig.io/CONFIG_USB_TRANCEVIBRATOR
-  # PlayStation 2 Trance Vibrator driver support
-  CONFIG_USB_TRANCEVIBRATOR
-
   # ADC with mismatched value that has to be set directly
   # https://www.kernelconfig.io/CONFIG_VIDEO_CS3308
   CONFIG_VIDEO_CS3308
@@ -211,10 +187,6 @@ configs_to_disable=(
   # AVE with mismatched value that has to be set directly
   # https://www.kernelconfig.io/CONFIG_VIDEO_SAA6752HS
   CONFIG_VIDEO_SAA6752HS
-
-  # https://www.kernelconfig.io/CONFIG_X86_ANDROID_TABLETS
-  # X86 Android tablet support
-  CONFIG_X86_ANDROID_TABLETS
 
   # https://www.kernelconfig.io/CONFIG_GNSS
   # https://en.wikipedia.org/wiki/Satellite_navigation
@@ -226,110 +198,6 @@ configs_to_disable=(
   # https://en.wikipedia.org/wiki/GPIB
   # Enable support for GPIB cards and dongles. 
   CONFIG_GPIB
-
-
-  
-  ############################################################
-  ################# Unused network protocols #################
-  ############################################################
-  # https://www.kernelconfig.io/CONFIG_ATALK
-  # Appletalk protocol support
-  CONFIG_ATALK
-  
-  # https://www.kernelconfig.io/CONFIG_ATM
-  # Asynchronous Transfer Mode (ATM)
-  # https://en.wikipedia.org/wiki/Asynchronous_Transfer_Mode
-  # In order to participate in an ATM network, your Linux box needs an
-  # ATM networking card.
-  # ATM became popular with telephone companies and many computer makers in the 1990s. 
-  # However, even by the end of the decade, the better price–performance ratio of Internet Protocol-based
-  # products was competing with ATM technology for integrating real-time and bursty network traffic.
-  CONFIG_ATM
-  
-  # https://www.kernelconfig.io/CONFIG_BATMAN_ADV
-  # B.A.T.M.A.N. Advanced Meshing Protocol
-  CONFIG_BATMAN_ADV
-
-  # https://www.kernelconfig.io/CONFIG_CAN
-  # https://www.kernel.org/doc/Documentation/networking/can.rst
-  # https://en.wikipedia.org/wiki/CAN_bus
-  # Controller Area Network (CAN) is a slow (up to 1Mbit/s) serial
-  # communications protocol. 
-  CONFIG_CAN
-  
-  # https://www.kernelconfig.io/CONFIG_IP_DCCP
-  # https://en.wikipedia.org/wiki/Datagram_Congestion_Control_Protocol
-  # The DCCP Protocol
-  CONFIG_IP_DCCP
-  CONFIG_NETFILTER_XT_MATCH_DCCP
-  CONFIG_NF_CT_PROTO_DCCP
-
-  # https://www.kernelconfig.io/CONFIG_GTP
-  # GPRS Tunneling Protocol datapath (GTP-U)
-  # https://en.wikipedia.org/wiki/GPRS_Tunnelling_Protocol
-  # used for cellulard network infrastructure
-  CONFIG_GTP
-  
-  # https://www.kernelconfig.io/CONFIG_RDS
-  # https://en.wikipedia.org/wiki/Reliable_Datagram_Sockets
-  # The RDS (Reliable Datagram Sockets) protocol provides reliable,
-  # sequenced delivery of datagrams over Infiniband or TCP.
-  CONFIG_RDS
-
-  # https://www.kernelconfig.io/CONFIG_L2TP
-  # https://en.wikipedia.org/wiki/Layer_2_Tunneling_Protocol
-  # Layer Two Tunneling Protocol (L2TP)
-  CONFIG_L2TP
-  
-  # https://www.kernelconfig.io/CONFIG_MCTP
-  # https://en.wikipedia.org/wiki/Management_Component_Transport_Protocol
-  # MCTP core protocol support
-  CONFIG_MCTP
-  
-  # https://www.kernelconfig.io/CONFIG_IP_SCTP
-  # https://en.wikipedia.org/wiki/Stream_Control_Transmission_Protocol
-  # SCTP is a reliable transport protocol operating on top of a
-  # connectionless packet network such as IP. 
-  CONFIG_IP_SCTP
-  CONFIG_NETFILTER_XT_MATCH_SCTP
-  CONFIG_IP_VS_PROTO_SCTP
-  CONFIG_NF_CT_PROTO_SCTP
-
-  # https://www.kernelconfig.io/CONFIG_TIPC
-  # https://en.wikipedia.org/wiki/Transparent_Inter-process_Communication
-  # The Transparent Inter Process Communication (TIPC) protocol is
-  # specially designed for intra cluster communication. This protocol
-  # originates from Ericsson where it has been used in carrier grade
-  # cluster applications for many years.
-  CONFIG_TIPC
-
-
-
-  ###################################################################################
-  ################# Unused FSes excluding network FSes and squashfs #################
-  ###################################################################################
-  CONFIG_ADFS_FS
-  CONFIG_AFFS_FS
-  CONFIG_AFS_FS
-  CONFIG_BEFS_FS
-  CONFIG_CEPH_FS
-  # https://documentation.suse.com/sle-ha/12-SP5/html/SLE-HA-all/cha-ha-storage-dlm.html
-  CONFIG_CODA_FS
-  CONFIG_CRAMFS
-  CONFIG_DLM
-  CONFIG_ECRYPT_FS
-  CONFIG_GFS2_FS
-  CONFIG_JFFS2_FS
-  CONFIG_JFS_FS
-  CONFIG_MINIX_FS
-  CONFIG_NET_9P
-  CONFIG_NILFS2_FS
-  CONFIG_OCFS2_FS
-  CONFIG_ORANGEFS_FS
-  CONFIG_ROMFS_FS
-  CONFIG_UBIFS_FS
-  CONFIG_UDF_FS
-  CONFIG_ZONEFS_FS
 )
 
 for config_to_disable in "${configs_to_disable[@]}"; do
