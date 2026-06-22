@@ -7,6 +7,13 @@ git checkout 2e968930313cc3bac8fb760b99cf3cdc68966ea1
 
 fedpkg sources
 
+
+configs_to_enable=(
+  # https://www.kernelconfig.io/CONFIG_PROC_PAGE_MONITOR
+  # requires a value set since its parent gets disabled
+  CONFIG_PROC_PAGE_MONITOR
+)
+
 configs_to_disable=(
   # https://www.kernelconfig.io/CONFIG_INFINIBAND
   # https://en.wikipedia.org/wiki/InfiniBand
@@ -327,6 +334,10 @@ configs_to_disable=(
 
 for config_to_disable in "${configs_to_disable[@]}"; do
   echo "# ${config_to_disable} is not set" >> kernel-local
+done
+
+for config_to_enable in "${configs_to_enable[@]}"; do
+  echo "${config_to_enable}=y" >> kernel-local
 done
 
 SECUREBLUE_BUILDID_VERSION=2
