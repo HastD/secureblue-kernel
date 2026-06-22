@@ -61,6 +61,10 @@ configs_to_disable=(
   # InfiniBand support
   CONFIG_INFINIBAND
 
+  # https://www.kernelconfig.io/CONFIG_NETCONSOLE
+  # Network console logging support
+  CONFIG_NETCONSOLE
+
   # https://www.kernelconfig.io/CONFIG_PARPORT
   # Parallel port support
   CONFIG_PARPORT
@@ -87,6 +91,19 @@ configs_to_disable=(
   # [3] enabling low-power devices with limited processing capabilities to participate in the Internet of Things.[1]
   CONFIG_6LOWPAN
 
+  # https://www.kernelconfig.io/CONFIG_IEEE802154
+  # IEEE Std 802.15.4 Low-Rate Wireless Personal Area Networks support
+  # IEEE Std 802.15.4 defines a low data rate, low power and low
+  # complexity short range wireless personal area networks. It was
+  # designed to organise networks of sensors, switches, etc automation
+  # devices. Maximum allowed data rate is 250 kb/s and typical personal
+  # operating space around 10m.
+  CONFIG_IEEE802154
+
+  # https://www.kernelconfig.io/CONFIG_X86_ANDROID_TABLETS
+  # X86 Android tablet support
+  CONFIG_X86_ANDROID_TABLETS
+
   # https://www.kernelconfig.io/CONFIG_CAN
   # https://www.kernel.org/doc/Documentation/networking/can.rst
   # https://en.wikipedia.org/wiki/CAN_bus
@@ -110,6 +127,9 @@ configs_to_disable=(
   # SCTP is a reliable transport protocol operating on top of a
   # connectionless packet network such as IP. 
   CONFIG_IP_SCTP
+  CONFIG_NETFILTER_XT_MATCH_SCTP
+  CONFIG_IP_VS_PROTO_SCTP
+  CONFIG_NF_CT_PROTO_SCTP
 
   # https://www.kernelconfig.io/CONFIG_RDS
   # https://en.wikipedia.org/wiki/Reliable_Datagram_Sockets
@@ -152,6 +172,13 @@ configs_to_disable=(
   # MCTP core protocol support
   CONFIG_MCTP
 
+  # https://www.kernelconfig.io/CONFIG_IP_DCCP
+  # https://en.wikipedia.org/wiki/Datagram_Congestion_Control_Protocol
+  # The DCCP Protocol
+  CONFIG_IP_DCCP
+  CONFIG_NETFILTER_XT_MATCH_DCCP
+  CONFIG_NF_CT_PROTO_DCCP
+
   # ADC with mismatched value that has to be set directly
   # https://www.kernelconfig.io/CONFIG_VIDEO_CS3308
   CONFIG_VIDEO_CS3308
@@ -159,6 +186,73 @@ configs_to_disable=(
   # AVE with mismatched value that has to be set directly
   # https://www.kernelconfig.io/CONFIG_VIDEO_SAA6752HS
   CONFIG_VIDEO_SAA6752HS
+
+  # https://www.kernelconfig.io/CONFIG_DEBUG_KERNEL
+  # https://www.kernelconfig.io/CONFIG_DEBUG_FS
+  # Say Y here if you are developing drivers or trying to debug and
+  # identify kernel problems.
+  # debugfs is a virtual file system that kernel developers use to put
+  # debugging files into. Enable this option to be able to read and
+  # write to these files.
+  CONFIG_DEBUG_KERNEL
+  CONFIG_DEBUG_FS
+
+  # https://www.kernelconfig.io/CONFIG_PCIEAER_INJECT
+  # This enables PCI Express Root Port Advanced Error Reporting
+  # (AER) software error injector.
+  CONFIG_PCIEAER_INJECT
+
+  # https://www.kernelconfig.io/CONFIG_SCSI_DEBUG
+  # SCSI debugging host and device simulator
+  CONFIG_SCSI_DEBUG
+
+  # https://www.kernelconfig.io/CONFIG_USB_SERIAL_DEBUG
+  # USB Debugging Device
+  CONFIG_USB_SERIAL_DEBUG
+
+  # https://www.kernelconfig.io/CONFIG_RING_BUFFER_BENCHMARK
+  # Ring buffer benchmark stress tester
+  CONFIG_RING_BUFFER_BENCHMARK
+
+  # https://www.kernelconfig.io/CONFIG_DRM_VKMS
+  # Virtual KMS (EXPERIMENTAL)
+  CONFIG_DRM_VKMS
+
+  # https://www.kernelconfig.io/CONFIG_USB_DUMMY_HCD
+  # Dummy HCD (DEVELOPMENT)
+  CONFIG_USB_DUMMY_HCD
+
+  # https://www.kernelconfig.io/CONFIG_MTD_NAND_NANDSIM
+  # Support for NAND Flash Simulator
+  CONFIG_MTD_NAND_NANDSIM
+
+  # https://www.kernelconfig.io/CONFIG_MTD_MTDRAM
+  # Test driver using RAM
+  CONFIG_MTD_MTDRAM
+
+  # https://www.kernelconfig.io/CONFIG_GAMEPORT
+  # Gameport support is for the standard 15-pin PC gameport.
+  CONFIG_GAMEPORT
+
+  # https://www.kernelconfig.io/CONFIG_BLK_DEV_FD
+  # Normal floppy disk support
+  CONFIG_BLK_DEV_FD
+
+  # https://www.kernelconfig.io/CONFIG_AF_RXRPC
+  # RxRPC session sockets
+  CONFIG_AF_RXRPC
+
+  # https://www.kernelconfig.io/CONFIG_JFFS2_FS
+  # Journalling Flash File System v2 (JFFS2) support
+  CONFIG_JFFS2_FS
+
+  # https://www.kernelconfig.io/CONFIG_UBIFS_FS
+  # UBIFS file system support
+  CONFIG_UBIFS_FS
+
+  # https://www.kernelconfig.io/CONFIG_BEFS_FS
+  # BeOS file system (BeFS) support (read only)
+  CONFIG_BEFS_FS
 )
 
 for config_to_disable in "${configs_to_disable[@]}"; do
