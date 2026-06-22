@@ -3,7 +3,7 @@ set -eux
 
 git clone https://src.fedoraproject.org/rpms/kernel.git
 cd kernel
-git checkout f44
+git checkout 2e968930313cc3bac8fb760b99cf3cdc68966ea1
 
 fedpkg sources
 
