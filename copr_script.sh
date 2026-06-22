@@ -187,15 +187,13 @@ configs_to_disable=(
   # https://www.kernelconfig.io/CONFIG_VIDEO_SAA6752HS
   CONFIG_VIDEO_SAA6752HS
 
-  # https://www.kernelconfig.io/CONFIG_DEBUG_KERNEL
-  # https://www.kernelconfig.io/CONFIG_DEBUG_FS
-  # Say Y here if you are developing drivers or trying to debug and
-  # identify kernel problems.
-  # debugfs is a virtual file system that kernel developers use to put
-  # debugging files into. Enable this option to be able to read and
-  # write to these files.
-  CONFIG_DEBUG_KERNEL
-  CONFIG_DEBUG_FS
+  # https://www.kernelconfig.io/CONFIG_X86_MCE_INJECT
+  # Machine check injector support
+  CONFIG_X86_MCE_INJECT
+  
+  # https://www.kernelconfig.io/CONFIG_HWPOISON_INJECT
+  # HWPoison pages injector
+  CONFIG_HWPOISON_INJECT
 
   # https://www.kernelconfig.io/CONFIG_PCIEAER_INJECT
   # This enables PCI Express Root Port Advanced Error Reporting
