@@ -1,0 +1,79 @@
+name: kernel-build
+
+on:
+  schedule:
+    - cron: "5 */6 * * *" # every 6 hours
+  workflow_dispatch:
+
+concurrency:
+  group: kernel-build
+  cancel-in-progress: false
+
+permissions: {}
+
+env:
+  GH_REPO: ${{ github.repository }}
+  GH_TOKEN: ${{ secrets.VARS_TOKEN }}
+
+jobs:
+  kernel-build:
+    runs-on: ubuntu-26.04
+    environment: Build
+    steps:
+      - name: Read env variables
+        id: env_variables
+        run: |
+          stored_upstream=$(gh variable get UPSTREAM_KERNEL_VERSION --env Build)
+          stored_secureblue_buildid_version="$(gh variable get SECUREBLUE_BUILDID_VERSION --env Build)"
+          echo "stored_upstream=${stored_upstream}" >> "${GITHUB_OUTPUT}"
+          echo "stored_secureblue_buildid_version=${stored_secureblue_buildid_version}" >> "${GITHUB_OUTPUT}"
+
+      - name: Get upstream version
+        id: get_upstream_version
+        run: |
+          curl -fLsS --retry 5 -o kernel.spec https://src.fedoraproject.org/rpms/kernel/raw/f44/f/kernel.spec
+          version=$(rpmspec -P kernel.spec | awk '$1 == "Version:" { print $2; exit }')
+          release=$(rpmspec -P kernel.spec | awk '$1 == "Release:" { print $2; exit }')
+          if [[ -z "${version}" || -z "${release}" ]]; then
+            echo "failed to parse kernel.spec"
+            exit 1
+          fi
+          echo "current_upstream_version_plus_release=${version}-${release}" >> "${GITHUB_OUTPUT}"
+
+      - name: Calculate buildid
+        id: calculate_buildid
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          STORED_UPSTREAM: ${{ steps.env_variables.outputs.stored_upstream }}
+          STORED_SECUREBLUE_BUILDID_VERSION: ${{ steps.env_variables.outputs.stored_secureblue_buildid_version }}
+          CURRENT_UPSTREAM_VERSION_PLUS_RELEASE: ${{ steps.get_upstream_version.outputs.current_upstream_version_plus_release }}
+        run: |
+          need_build=false
+          
+          if [[ "${CURRENT_UPSTREAM_VERSION_PLUS_RELEASE}" != "${STORED_UPSTREAM}" ]]; then
+          # Upstream kernel version mismatch, reset our buildid version to 1
+            need_build=true
+            secureblue_buildid_version=1
+          elif [[ "${EVENT_NAME}" == "workflow_dispatch" ]]; then
+          # Unscheduled rebuild of an existing version, bump our buildid version
+            need_build=true
+            secureblue_buildid_version=$(( STORED_SECUREBLUE_BUILDID_VERSION + 1 ))
+          else
+            echo "Scheduled build with no upstream release change. No need to rebuild."
+            exit 0
+          fi
+
+          echo "need_build=${need_build}" >> "${GITHUB_OUTPUT}"
+          echo "secureblue_buildid_version=${secureblue_buildid_version}" >> "${GITHUB_OUTPUT}"
+
+      - name: Run build
+        if: steps.calculate_buildid.outputs.need_build == 'true'
+        env:
+          CURRENT_UPSTREAM_VERSION_PLUS_RELEASE: ${{ steps.get_upstream_version.outputs.current_upstream_version_plus_release }}
+          SECUREBLUE_BUILDID_VERSION: ${{ steps.calculate_buildid.outputs.secureblue_buildid_version }}
+          COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
+        run: |
+          gh variable set UPSTREAM_KERNEL_VERSION --env Build --body "${CURRENT_UPSTREAM_VERSION_PLUS_RELEASE}"
+          gh variable set SECUREBLUE_BUILDID_VERSION --env Build --body "${SECUREBLUE_BUILDID_VERSION}"
+          payload=$(jq -cn --arg buildid_version "${SECUREBLUE_BUILDID_VERSION}" '{"secureblue_buildid_version": $buildid_version | tonumber}')
+          curl -fLsS --retry 5 --json "${payload}" "${COPR_WEBHOOK_URL}"

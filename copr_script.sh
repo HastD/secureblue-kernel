@@ -11,9 +11,11 @@ readonly build_dir
 
 git clone https://src.fedoraproject.org/rpms/kernel.git
 cd kernel
-git checkout 2e968930313cc3bac8fb760b99cf3cdc68966ea1
+git checkout f44
 
-readonly secureblue_buildid_version=2
+# https://docs.copr.fedorainfracloud.org/user_documentation.html#webhooks
+secureblue_buildid_version=$(jq -r '.secureblue_buildid_version' "${build_dir}/hook_payload")
+readonly secureblue_buildid_version
 
 fedpkg sources
 
@@ -52,6 +54,8 @@ configs_to_disable=(
   # https://www.kernelconfig.io/CONFIG_AF_RXRPC
   # RxRPC session sockets
   CONFIG_AF_RXRPC
+  # Required for disabling RxRPC session sockets
+  CONFIG_AFS_FS
 
   # https://www.kernelconfig.io/CONFIG_XDP_SOCKETS_DIAG
   # XDP sockets: monitoring interface
