@@ -83,7 +83,7 @@ jobs:
           payload=$(jq -cn --arg buildid_version "${SECUREBLUE_BUILDID_VERSION}" '{"secureblue_buildid_version": $buildid_version | tonumber}')
           gh variable set UPSTREAM_KERNEL_VERSION --env Build --body "${CURRENT_UPSTREAM_VERSION_PLUS_RELEASE}" --repo "${GITHUB_REPOSITORY}"
           gh variable set SECUREBLUE_BUILDID_VERSION --env Build --body "${SECUREBLUE_BUILDID_VERSION}" --repo "${GITHUB_REPOSITORY}"
-          build_id=$(curl -fLsS --retry 5 --json "${payload}" "${COPR_WEBHOOK_URL}")
+          BUILD_ID=$(curl -fLsS --retry 5 --json "${payload}" "${COPR_WEBHOOK_URL}")
           while true; do
             state=$(curl -fLsS --retry 5 "https://copr.fedorainfracloud.org/api_3/build/${BUILD_ID}" | jq -r '.state')
             if [[ "${state}" == "succeeded" ]]; then
