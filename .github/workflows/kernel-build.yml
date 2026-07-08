@@ -27,8 +27,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.VARS_TOKEN }} # has Environments RW
         run: |
-          stored_upstream=$(gh variable get UPSTREAM_KERNEL_VERSION --env Build)
-          stored_secureblue_buildid_version="$(gh variable get SECUREBLUE_BUILDID_VERSION --env Build)"
+          stored_upstream=$(gh variable get UPSTREAM_KERNEL_VERSION --env Build --repo "${GITHUB_REPOSITORY}")
+          stored_secureblue_buildid_version="$(gh variable get SECUREBLUE_BUILDID_VERSION --env Build --repo "${GITHUB_REPOSITORY}")"
           echo "stored_upstream=${stored_upstream}" >> "${GITHUB_OUTPUT}"
           echo "stored_secureblue_buildid_version=${stored_secureblue_buildid_version}" >> "${GITHUB_OUTPUT}"
 
@@ -81,8 +81,8 @@ jobs:
           COPR_WEBHOOK_URL: ${{ secrets.COPR_WEBHOOK_URL }}
         run: |
           payload=$(jq -cn --arg buildid_version "${SECUREBLUE_BUILDID_VERSION}" '{"secureblue_buildid_version": $buildid_version | tonumber}')
-          gh variable set UPSTREAM_KERNEL_VERSION --env Build --body "${CURRENT_UPSTREAM_VERSION_PLUS_RELEASE}"
-          gh variable set SECUREBLUE_BUILDID_VERSION --env Build --body "${SECUREBLUE_BUILDID_VERSION}"
+          gh variable set UPSTREAM_KERNEL_VERSION --env Build --body "${CURRENT_UPSTREAM_VERSION_PLUS_RELEASE}" --repo "${GITHUB_REPOSITORY}"
+          gh variable set SECUREBLUE_BUILDID_VERSION --env Build --body "${SECUREBLUE_BUILDID_VERSION}" --repo "${GITHUB_REPOSITORY}"
           build_id=$(curl -fLsS --retry 5 --json "${payload}" "${COPR_WEBHOOK_URL}")
           while true; do
             state=$(curl -fLsS --retry 5 "https://copr.fedorainfracloud.org/api_3/build/${BUILD_ID}" | jq -r '.state')
@@ -106,4 +106,4 @@ jobs:
           SECUREBLUE_BUILDID_VERSION: ${{ steps.calculate_buildid.outputs.secureblue_buildid_version }}
         run: |
           TAG="${CURRENT_UPSTREAM_VERSION_PLUS_RELEASE}.secureblue.${SECUREBLUE_BUILDID_VERSION}"
-          gh release create "${TAG}" --generate-notes
+          gh release create "${TAG}" --generate-notes --repo "${GITHUB_REPOSITORY}"
