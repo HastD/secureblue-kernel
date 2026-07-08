@@ -99,7 +99,7 @@ jobs:
           done
 
       - name: Create release
-        if: steps.build.outputs.success == 'true'
+        if: steps.build.outputs.build_succeeded == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           CURRENT_UPSTREAM_VERSION_PLUS_RELEASE: ${{ steps.get_upstream_version.outputs.current_upstream_version_plus_release }}
